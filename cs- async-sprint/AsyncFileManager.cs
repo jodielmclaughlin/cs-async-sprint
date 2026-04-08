@@ -9,15 +9,15 @@ namespace cs__async_sprint
     public class AsyncFileManager
     {
         //AsyncFileManager.ReadFile("\cs- async-sprint\SuperSecretFile.txt")
-        public string ReadFile(string path)
+        public async Task<string> ReadFile(string path)
         {
-            var readSecretFile = File.ReadAllTextAsync(path);
-            return readSecretFile.Result;
+            Task<string> readSecretFile = File.ReadAllTextAsync(path);
+            return await readSecretFile;
         }
 
-        public void WriteFile(string path, string content)
+        public async void WriteFile(string path, string content)
         {
-            File.WriteAllTextAsync(path, content);
+            await File.WriteAllTextAsync(path, content);
         }
     }
 }

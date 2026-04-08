@@ -14,9 +14,28 @@ namespace cs__async_sprint
         {
             AsyncFileManager manager = new AsyncFileManager();
             var print = manager.ReadFile("SuperSecretFile.txt");
-            Console.WriteLine(print);
+            string newmessage = "";
+            //Needs to be refactored to methods
+            for (int i = 0; i < print.Length; i++)
+            {
+                if (print[i] == ' ')
+                {
+                    newmessage += print[i];
+                }
+                if (print[i] >= 'a' && print[i] <= 'z')
+                {
+                    char something = print[i] == 'z' ? 'a' : (char)(print[i] + 1);
+                    newmessage = newmessage + something;
+                }
+                if (print[i] >= 'A' && print[i] <= 'Z')
+                {
+                    char something = print[i] == 'Z' ? 'A' : (char)(print[i] + 1);
+                    newmessage = newmessage + something;
+                }
+            }
 
-            manager.WriteFile("TestFile.txt", "This is a test file");
+
+            manager.WriteFile("DecryptedMessage.txt", newmessage);
 
 
             //string data = "85671 34262 92143 50984 24515 68356 77247 12348 56789 98760";

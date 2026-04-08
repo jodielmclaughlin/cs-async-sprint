@@ -16,6 +16,8 @@ namespace cs__async_sprint
             var print = manager.ReadFile("SuperSecretFile.txt");
             Console.WriteLine(print);
 
+            manager.WriteFile("TestFile.txt", "This is a test file");
+
 
             //string data = "85671 34262 92143 50984 24515 68356 77247 12348 56789 98760";
             //List<BigInteger> stringToBigInteger = data.Split(' ').Select(x => BigInteger.Parse(x)).ToList();

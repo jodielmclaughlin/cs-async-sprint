@@ -14,5 +14,10 @@ namespace cs__async_sprint
             var readSecretFile = File.ReadAllTextAsync(path);
             return readSecretFile.Result;
         }
+
+        public void WriteFile(string path, string content)
+        {
+            File.WriteAllTextAsync(path, content);
+        }
     }
 }

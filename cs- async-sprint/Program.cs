@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.Tracing;
 using System.Linq.Expressions;
 using System.Numerics;
+using System.Security.Cryptography.X509Certificates;
+using System.Threading.Tasks;
 
 namespace cs__async_sprint
 {
@@ -11,23 +14,28 @@ namespace cs__async_sprint
         {
 
             string data = "85671 34262 92143 50984 24515 68356 77247 12348 56789 98760";
-            List<BigInteger> stringToBigInteger = data.Split(' ').Select(x => BigInteger.Parse(x)).ToList();
+            //List<BigInteger> stringToBigInteger = data.Split(' ').Select(x => BigInteger.Parse(x)).ToList();
 
-            List<Task<BigInteger>> tasks = stringToBigInteger.Select(biginteger => Task.Run(() => Exercises.CalculateFactorial(biginteger))).ToList();
-            var results = await Task.WhenAll(tasks);
-            foreach (var result in results)
-            {
-                Console.WriteLine(result);
-            }
+            //List<Task<BigInteger>> tasks = stringToBigInteger.Select(biginteger => Task.Run(() => Exercises.CalculateFactorial(biginteger))).ToList();
+            //var results = await Task.WhenAll(tasks);
+            //foreach (var result in results)
+            //{
+            //    Console.WriteLine(result);
+            //}
+
             //Approach with ContinueWith included:
-            //var tasks = data.Split(' ')
-            //    .Select(x => BigInteger.Parse(x))
-            //    .Select(biginteger => Task.Run(() => Exercises.CalculateFactorial(biginteger)))
-            //    .Select(task => task.ContinueWith(t => Console.WriteLine(t.Result))).ToList();
-            //await Task.WhenAll(tasks);
-       
+            var tasks = data.Split(' ')
+                .Select(x => BigInteger.Parse(x))
+                .Select(biginteger => Task.Run(() => Exercises.CalculateFactorial(biginteger)))
+                .Select(task => task.ContinueWith(t => Console.WriteLine(t.Result))).ToList();
+            var task1 = Task.WhenAll(tasks);
+            
+        
 
+            Exercises exercises = new Exercises();
+            var task2 = exercises.PrintStoryByWord();
 
+            await Task.WhenAll(task1,task2);
 
 
             //Random rnd = new Random();

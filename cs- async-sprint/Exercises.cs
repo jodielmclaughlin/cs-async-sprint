@@ -19,5 +19,20 @@ namespace cs__async_sprint
             return result;
         }
 
+        public async Task PrintStoryByWord()
+        {
+            string story = "Mary had a little lamb, its fleece was white as snow.";
+            var storySplit = story.Split(' ');
+            foreach (var word in storySplit)
+            {
+
+                
+                Console.WriteLine(word);
+                await Task.Delay(1000);
+
+                //foreach, console.writeline, task.delay,
+
+            }
+        }
     }
 }

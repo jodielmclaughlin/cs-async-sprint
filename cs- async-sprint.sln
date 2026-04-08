@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36915.13 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cs- async-sprint", "cs- async-sprint\cs- async-sprint.csproj", "{EFF883EE-2E51-4F63-95D4-404D6070782A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EFF883EE-2E51-4F63-95D4-404D6070782A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFF883EE-2E51-4F63-95D4-404D6070782A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFF883EE-2E51-4F63-95D4-404D6070782A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFF883EE-2E51-4F63-95D4-404D6070782A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E520F76F-B315-40DF-980C-A7E86D7B7DC4}
+	EndGlobalSection
+EndGlobal

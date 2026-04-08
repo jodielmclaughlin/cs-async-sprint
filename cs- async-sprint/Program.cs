@@ -12,8 +12,12 @@ namespace cs__async_sprint
     {
         static async Task Main(string[] args)
         {
+            AsyncFileManager manager = new AsyncFileManager();
+            var print = manager.ReadFile("SuperSecretFile.txt");
+            Console.WriteLine(print);
 
-            string data = "85671 34262 92143 50984 24515 68356 77247 12348 56789 98760";
+
+            //string data = "85671 34262 92143 50984 24515 68356 77247 12348 56789 98760";
             //List<BigInteger> stringToBigInteger = data.Split(' ').Select(x => BigInteger.Parse(x)).ToList();
 
             //List<Task<BigInteger>> tasks = stringToBigInteger.Select(biginteger => Task.Run(() => Exercises.CalculateFactorial(biginteger))).ToList();
@@ -24,20 +28,20 @@ namespace cs__async_sprint
             //}
 
             //Approach with ContinueWith included:
-            var tasks = data.Split(' ')
-                .Select(x => BigInteger.Parse(x))
-                .Select(biginteger => Task.Run(() => Exercises.CalculateFactorial(biginteger)))
-                .Select(task => task.ContinueWith(t => Console.WriteLine(t.Result))).ToList();
-            var task1 = Task.WhenAll(tasks);
-            
-        
-
-            Exercises exercises = new Exercises();
-            var task2 = exercises.PrintStoryByWord();
-
-            await Task.WhenAll(task1,task2);
+            //var tasks = data.Split(' ')
+            //    .Select(x => BigInteger.Parse(x))
+            //    .Select(biginteger => Task.Run(() => Exercises.CalculateFactorial(biginteger)))
+            //    .Select(task => task.ContinueWith(t => Console.WriteLine(t.Result))).ToList();
+            //var task1 = Task.WhenAll(tasks);
 
 
+
+            //Exercises exercises = new Exercises();
+            //var task2 = exercises.PrintStoryByWord();
+
+            //await Task.WhenAll(task1,task2);
+
+            //Task 3 - Combining Asynchronous Results
             //Random rnd = new Random();
             //CancellationTokenSource source = new CancellationTokenSource();
             //CancellationToken token = source.Token;
@@ -58,7 +62,7 @@ namespace cs__async_sprint
             //    //stopwatch.Stop();
             //});
 
-
+            // Task 4 - Asynchronous Error Handling
             //try
             //{
             //    source.CancelAfter(5000);
@@ -70,10 +74,6 @@ namespace cs__async_sprint
             //{
             //    Console.WriteLine($"{ex.Message}");
             //}
-
-
-
-
 
         }
     }

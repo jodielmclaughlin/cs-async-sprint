@@ -1,4 +1,5 @@
 ﻿using System.Linq.Expressions;
+using System.Diagnostics;
 
 namespace cs__async_sprint
 {
@@ -6,31 +7,43 @@ namespace cs__async_sprint
     {
         static async Task Main(string[] args)
         {
-            //await DelayPrint();
-            //static async Task DelayPrint()
-            //{
-            //    await Task.Delay(2000);
-            //    Console.WriteLine("Hello, World!");
-            //}
+            
+            Random rnd = new Random();
+            CancellationTokenSource source = new CancellationTokenSource();
+            CancellationToken token = source.Token;
+            
+            //Stopwatch stopwatch = Stopwatch.StartNew();
 
             Task<string> task1 = Task.Run(async () =>
             {
-                await Task.Delay(3000);
-                //Console.WriteLine("Hello...");
+                //stopwatch.Start();
+                await Task.Delay(rnd.Next(1000, 10000),token);
                 return "Hello...";
             });
 
             Task<string> task2 = Task.Run(async () =>
             {
-                await Task.Delay(3000);
-                //Console.WriteLine("...World!");
+                await Task.Delay(rnd.Next(1000, 10000),token);
                 return "...World!";
+                //stopwatch.Stop();
             });
 
-            //await Task.WhenAll(task1, task2);
-            var combinedTask = await Task.WhenAll(task2, task1);
-            Console.WriteLine(combinedTask[0]+ combinedTask[1]);
+
+            try
+            {
+                source.CancelAfter(5000);
+                var combinedTask = await Task.WhenAll(task1, task2);
+                Console.WriteLine(combinedTask[0] + combinedTask[1]);
+                
+            }
+            catch (OperationCanceledException ex) 
+            {
+                Console.WriteLine($"{ex.Message}");
+            }
             
+            
+                
+               
 
         }
     }

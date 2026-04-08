@@ -1,4 +1,6 @@
-﻿namespace cs__async_sprint
+﻿using System.Linq.Expressions;
+
+namespace cs__async_sprint
 {
     internal class Program
     {
@@ -11,18 +13,24 @@
             //    Console.WriteLine("Hello, World!");
             //}
 
-            static async Task DelayHello()
+            Task<string> task1 = Task.Run(async () =>
             {
                 await Task.Delay(3000);
-                Console.WriteLine("Hello");
-            }
+                //Console.WriteLine("Hello...");
+                return "Hello...";
+            });
 
-            static async Task DelayWorld()
+            Task<string> task2 = Task.Run(async () =>
             {
                 await Task.Delay(3000);
-                Console.WriteLine("World!");
-            }
-            await Task.WhenAll(DelayHello(), DelayWorld());            
+                //Console.WriteLine("...World!");
+                return "...World!";
+            });
+
+            //await Task.WhenAll(task1, task2);
+            var combinedTask = await Task.WhenAll(task2, task1);
+            Console.WriteLine(combinedTask[0]+ combinedTask[1]);
+            
 
         }
     }
